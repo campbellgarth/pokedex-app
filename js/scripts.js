@@ -44,9 +44,9 @@ for (let i = 0; i < pokemonList.length; i++) {
     }
 }
 
-//prints all pokemon names and heights. If the pokemon is the tallest/shortest/lightest/heaviest, it states so and its height or weight.
+//prints all pokemon names and heights/weights. If the pokemon is the tallest/shortest/lightest/heaviest, it states so and its height or weight.
 for (let i = 0; i < pokemonList.length; i++) {
-    document.write('<p style="font-size: 22px; font-weight: 700;">' + pokemonList[i].name + ' (height: ' + pokemonList[i].height + 'cm)' + '</p>');
+    document.write('<p style="font-size: 22px; font-weight: 700;">' + pokemonList[i].name + ' (height: ' + pokemonList[i].height + 'cm, weight: ' + pokemonList[i].weight + 'kg)' + '</p>');
 
     if (heaviestPokemonWeight === pokemonList[i].weight) {
         document.write('<p style="font-size: 18px; color: green; font-weight: 700;">' + 'I am the heaviest! I weigh ' + heaviestPokemonWeight + 'kg!' + '</p>');

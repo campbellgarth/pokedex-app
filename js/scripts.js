@@ -11,36 +11,33 @@ let pokemonList = [
 //determines the tallest pokemon
 let biggestPokemonHeight = 0;
 let biggestPokemonName = undefined;
+//determines the heaviest pokemon
+let heaviestPokemonWeight = 0;
+let heaviestPokemonName = undefined;
+//determines the smallest pokemon
+let smallestPokemonHeight = 100000;
+let smallestPokemonName = undefined;
+//determines the lightest pokemon
+let lightestPokemonWeight = 100000;
+let lightestPokemonName = undefined;
+
 for (let i = 0; i < pokemonList.length; i++) {
+    //determines the tallest pokemon
     if (biggestPokemonHeight < pokemonList[i].height) {
         biggestPokemonHeight = pokemonList[i].height;
         biggestPokemonName = pokemonList[i].name;
     }
-}
-
-//determines the heaviest pokemon
-let heaviestPokemonWeight = 0;
-let heaviestPokemonName = undefined;
-for (let i = 0; i < pokemonList.length; i++) {
+    //determines the heaviest pokemon
     if (heaviestPokemonWeight < pokemonList[i].weight) {
         heaviestPokemonWeight = pokemonList[i].weight;
         heaviestPokemonName = pokemonList[i].name;
     }
-}
-//determines the smallest pokemon
-let smallestPokemonHeight = 100000;
-let smallestPokemonName = undefined;
-for (let i = 0; i < pokemonList.length; i++) {
+    //determines the smallest pokemon
     if (smallestPokemonHeight > pokemonList[i].height) {
         smallestPokemonHeight = pokemonList[i].height;
         smallestPokemonName = pokemonList[i].name;
     }
-}
-
-//determines the lightest pokemon
-let lightestPokemonWeight = 100000;
-let lightestPokemonName = undefined;
-for (let i = 0; i < pokemonList.length; i++) {
+    //determines the lightest pokemon
     if (lightestPokemonWeight > pokemonList[i].weight) {
         lightestPokemonWeight = pokemonList[i].weight;
         lightestPokemonName = pokemonList[i].name;

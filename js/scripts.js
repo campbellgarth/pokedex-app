@@ -9,59 +9,60 @@ let pokemonList = [
 
 
 //determines the tallest pokemon
-let biggestPokemonHeight = 0;
+let biggestPokemonHeight = -Infinity;
 let biggestPokemonName = undefined;
 //determines the heaviest pokemon
-let heaviestPokemonWeight = 0;
+let heaviestPokemonWeight = -Infinity;
 let heaviestPokemonName = undefined;
 //determines the smallest pokemon
-let smallestPokemonHeight = 100000;
+let smallestPokemonHeight = Infinity;
 let smallestPokemonName = undefined;
 //determines the lightest pokemon
-let lightestPokemonWeight = 100000;
+let lightestPokemonWeight = Infinity;
 let lightestPokemonName = undefined;
 
-for (let i = 0; i < pokemonList.length; i++) {
+pokemonList.forEach(function(pokemon){
     //determines the tallest pokemon
-    if (biggestPokemonHeight < pokemonList[i].height) {
-        biggestPokemonHeight = pokemonList[i].height;
-        biggestPokemonName = pokemonList[i].name;
+    if (biggestPokemonHeight < pokemon.height) {
+        biggestPokemonHeight = pokemon.height;
+        biggestPokemonName = pokemon.name;
     }
     //determines the heaviest pokemon
-    if (heaviestPokemonWeight < pokemonList[i].weight) {
-        heaviestPokemonWeight = pokemonList[i].weight;
-        heaviestPokemonName = pokemonList[i].name;
+    if (heaviestPokemonWeight < pokemon.weight) {
+        heaviestPokemonWeight = pokemon.weight;
+        heaviestPokemonName = pokemon.name;
     }
     //determines the smallest pokemon
-    if (smallestPokemonHeight > pokemonList[i].height) {
-        smallestPokemonHeight = pokemonList[i].height;
-        smallestPokemonName = pokemonList[i].name;
+    if (smallestPokemonHeight > pokemon.height) {
+        smallestPokemonHeight = pokemon.height;
+        smallestPokemonName = pokemon.name;
     }
     //determines the lightest pokemon
-    if (lightestPokemonWeight > pokemonList[i].weight) {
-        lightestPokemonWeight = pokemonList[i].weight;
-        lightestPokemonName = pokemonList[i].name;
+    if (lightestPokemonWeight > pokemon.weight) {
+        lightestPokemonWeight = pokemon.weight;
+        lightestPokemonName = pokemon.name;
     }
-}
+});
 
-//prints all pokemon names and heights/weights. If the pokemon is the tallest/shortest/lightest/heaviest, it states so and its height or weight.
-for (let i = 0; i < pokemonList.length; i++) {
-    document.write('<p style="font-size: 22px; font-weight: 700;">' + pokemonList[i].name + ' (height: ' + pokemonList[i].height + 'cm, weight: ' + pokemonList[i].weight + 'kg)' + '</p>');
+pokemonList.forEach(function(pokemon){
+    document.write('<p style="font-size: 22px; font-weight: 700;">' + pokemon.name + ' (height: ' + pokemon.height + 'cm, weight: ' + pokemon.weight + 'kg)' + '</p>');
 
-    if (heaviestPokemonWeight === pokemonList[i].weight) {
+    if (heaviestPokemonWeight === pokemon.weight) {
         document.write('<p style="font-size: 18px; color: green; font-weight: 700;">' + 'I am the heaviest! I weigh ' + heaviestPokemonWeight + 'kg!' + '</p>');
     }
-    if (lightestPokemonWeight === pokemonList[i].weight) {
+    if (lightestPokemonWeight === pokemon.weight) {
         document.write('<p style="font-size: 18px; color: blue; font-weight: 700;">' + 'I am the lightest! I weigh ' + lightestPokemonWeight + 'kg!' + '</p>');
     }
 
-    if (biggestPokemonHeight === pokemonList[i].height) {
+    if (biggestPokemonHeight === pokemon.height) {
         document.write('<p style="font-size: 18px; color: purple; font-weight: 700;">' + 'I am the tallest! I am ' + biggestPokemonHeight + 'cm!' + '</p>');
     }
-    if (smallestPokemonHeight === pokemonList[i].height) {
+    if (smallestPokemonHeight === pokemon.height) {
         document.write('<p style="font-size: 18px; color: red; font-weight: 700;">' + 'I am the smallest! I am ' + smallestPokemonHeight + 'cm!' + '</p>');
     }
-}
+});
+
+
 
 
 

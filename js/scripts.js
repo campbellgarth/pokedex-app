@@ -22,7 +22,7 @@ let pokemonRepository = (function () {
     };
 })();
 
-let myPokemon = pokemonRepository.getAll();
+
 
 
 //determines the tallest pokemon
@@ -38,7 +38,7 @@ let smallestPokemonName = undefined;
 let lightestPokemonWeight = Infinity;
 let lightestPokemonName = undefined;
 
-myPokemon.forEach(function(pokemon){
+pokemonRepository.getAll().forEach(function(pokemon){
     //determines the tallest pokemon
     if (biggestPokemonHeight < pokemon.height) {
         biggestPokemonHeight = pokemon.height;
@@ -61,7 +61,7 @@ myPokemon.forEach(function(pokemon){
     }
 });
 
-myPokemon.forEach(function(pokemon){
+pokemonRepository.getAll().forEach(function(pokemon){
     document.write('<p style="font-size: 22px; font-weight: 700;">' + pokemon.name + ' (height: ' + pokemon.height + 'cm, weight: ' + pokemon.weight + 'kg)' + '</p>');
 
     if (heaviestPokemonWeight === pokemon.weight) {

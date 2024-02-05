@@ -1,11 +1,28 @@
-let pokemonList = [
-    { name: 'Lapras', pokedexNumber: 31, height: 250, weight: 220, type: ['water', 'ice'] },
-    { name: 'Dragonite', pokedexNumber: 149, height: 220, weight: 210, type: ['dragon', 'flying'] },
-    { name: 'Azumarill', pokedexNumber: 184, height: 80, weight: 28, type: ['water', 'fairy'] },
-    { name: 'Charizard', pokedexNumber: 6, height: 170, weight: 90, type: ['flying', 'fire'] },
-    { name: 'Butterfree', pokedexNumber: 12, height: 110, weight: 32, type: ['flying', 'bug'] },
-    { name: 'Aron', pokedexNumber: 304, height: 40, weight: 60, type: ['steel', 'rock'] }
-];
+
+let pokemonRepository = (function () {
+    let pokemonList = [
+        { name: 'Lapras', pokedexNumber: 31, height: 250, weight: 220, type: ['water', 'ice'] },
+        { name: 'Dragonite', pokedexNumber: 149, height: 220, weight: 210, type: ['dragon', 'flying'] },
+        { name: 'Azumarill', pokedexNumber: 184, height: 80, weight: 28, type: ['water', 'fairy'] },
+        { name: 'Charizard', pokedexNumber: 6, height: 170, weight: 90, type: ['flying', 'fire'] },
+        { name: 'Butterfree', pokedexNumber: 12, height: 110, weight: 32, type: ['flying', 'bug'] },
+        { name: 'Aron', pokedexNumber: 304, height: 40, weight: 60, type: ['steel', 'rock'] }
+    ];
+
+    function add(pokemon){
+        pokemonList.push(pokemon);
+    }
+    function getAll(){
+        return pokemonList;
+    }
+
+    return {
+        add: add,
+        getAll: getAll
+    };
+})();
+
+let myPokemon = pokemonRepository.getAll();
 
 
 //determines the tallest pokemon
@@ -21,7 +38,7 @@ let smallestPokemonName = undefined;
 let lightestPokemonWeight = Infinity;
 let lightestPokemonName = undefined;
 
-pokemonList.forEach(function(pokemon){
+myPokemon.forEach(function(pokemon){
     //determines the tallest pokemon
     if (biggestPokemonHeight < pokemon.height) {
         biggestPokemonHeight = pokemon.height;
@@ -44,7 +61,7 @@ pokemonList.forEach(function(pokemon){
     }
 });
 
-pokemonList.forEach(function(pokemon){
+myPokemon.forEach(function(pokemon){
     document.write('<p style="font-size: 22px; font-weight: 700;">' + pokemon.name + ' (height: ' + pokemon.height + 'cm, weight: ' + pokemon.weight + 'kg)' + '</p>');
 
     if (heaviestPokemonWeight === pokemon.weight) {

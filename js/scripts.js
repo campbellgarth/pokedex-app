@@ -9,74 +9,93 @@ let pokemonRepository = (function () {
         { name: 'Aron', pokedexNumber: 304, height: 40, weight: 60, type: ['steel', 'rock'] }
     ];
 
-    function add(pokemon){
+    function add(pokemon) {
         pokemonList.push(pokemon);
     }
-    function getAll(){
+    function getAll() {
         return pokemonList;
     }
 
+
+    function pokemonMinMax() {
+        //determines the tallest pokemon
+        let biggestPokemonHeight = -Infinity;
+        let biggestPokemonName = undefined;
+        //determines the heaviest pokemon
+        let heaviestPokemonWeight = -Infinity;
+        let heaviestPokemonName = undefined;
+        //determines the smallest pokemon
+        let smallestPokemonHeight = Infinity;
+        let smallestPokemonName = undefined;
+        //determines the lightest pokemon
+        let lightestPokemonWeight = Infinity;
+        let lightestPokemonName = undefined;
+
+        pokemonList.forEach(function (pokemon) {
+            //determines the tallest pokemon
+            if (biggestPokemonHeight < pokemon.height) {
+                biggestPokemonHeight = pokemon.height;
+                biggestPokemonName = pokemon.name;
+            }
+            //determines the heaviest pokemon
+            if (heaviestPokemonWeight < pokemon.weight) {
+                heaviestPokemonWeight = pokemon.weight;
+                heaviestPokemonName = pokemon.name;
+            }
+            //determines the smallest pokemon
+            if (smallestPokemonHeight > pokemon.height) {
+                smallestPokemonHeight = pokemon.height;
+                smallestPokemonName = pokemon.name;
+            }
+            //determines the lightest pokemon
+            if (lightestPokemonWeight > pokemon.weight) {
+                lightestPokemonWeight = pokemon.weight;
+                lightestPokemonName = pokemon.name;
+            }
+
+        });
+        let pokemonStatArray = [heaviestPokemonWeight, lightestPokemonWeight, biggestPokemonHeight, smallestPokemonHeight];
+        return pokemonStatArray;
+
+    }
+    function addListItem(pokemon) {
+        let pokemonUl = document.querySelector('.pokemon-list');
+        let listItem = document.createElement('li');
+        listItem.classList.add('each-pokemon');
+        let button = document.createElement('button');
+        let pokemonStats = pokemonMinMax();
+        button.innerText = pokemon.name;
+        
+        if (pokemonStats[0] === pokemon.weight) {
+            button.append(' (I am the heaviest! I weigh ' + pokemon.weight + 'kg!)');
+        }
+        if (pokemonStats[1] === pokemon.weight) {
+            button.append(' (I am the lightest! I weigh ' + pokemon.weight + 'kg!)');
+        }
+        if (pokemonStats[2] === pokemon.height) {
+            button.append(' (I am the tallest! I am ' + pokemon.height + 'cm tall!)');
+        }
+        if (pokemonStats[3] === pokemon.height) {
+            button.append(' (I am the shortest! I am ' + pokemon.height + 'cm tall!)');
+        }
+        button.classList.add('pokemon-button');
+        listItem.appendChild(button);
+        pokemonUl.appendChild(listItem);
+
+    }
+
+
     return {
         add: add,
-        getAll: getAll
+        getAll: getAll,
+        addListItem: addListItem,
+        pokemonMinMax: pokemonMinMax
     };
 })();
 
+pokemonRepository.getAll().forEach(function (pokemon) {
+    pokemonRepository.addListItem(pokemon);
 
-
-
-//determines the tallest pokemon
-let biggestPokemonHeight = -Infinity;
-let biggestPokemonName = undefined;
-//determines the heaviest pokemon
-let heaviestPokemonWeight = -Infinity;
-let heaviestPokemonName = undefined;
-//determines the smallest pokemon
-let smallestPokemonHeight = Infinity;
-let smallestPokemonName = undefined;
-//determines the lightest pokemon
-let lightestPokemonWeight = Infinity;
-let lightestPokemonName = undefined;
-
-pokemonRepository.getAll().forEach(function(pokemon){
-    //determines the tallest pokemon
-    if (biggestPokemonHeight < pokemon.height) {
-        biggestPokemonHeight = pokemon.height;
-        biggestPokemonName = pokemon.name;
-    }
-    //determines the heaviest pokemon
-    if (heaviestPokemonWeight < pokemon.weight) {
-        heaviestPokemonWeight = pokemon.weight;
-        heaviestPokemonName = pokemon.name;
-    }
-    //determines the smallest pokemon
-    if (smallestPokemonHeight > pokemon.height) {
-        smallestPokemonHeight = pokemon.height;
-        smallestPokemonName = pokemon.name;
-    }
-    //determines the lightest pokemon
-    if (lightestPokemonWeight > pokemon.weight) {
-        lightestPokemonWeight = pokemon.weight;
-        lightestPokemonName = pokemon.name;
-    }
-});
-
-pokemonRepository.getAll().forEach(function(pokemon){
-    document.write('<p style="font-size: 22px; font-weight: 700;">' + pokemon.name + ' (height: ' + pokemon.height + 'cm, weight: ' + pokemon.weight + 'kg)' + '</p>');
-
-    if (heaviestPokemonWeight === pokemon.weight) {
-        document.write('<p style="font-size: 18px; color: green; font-weight: 700;">' + 'I am the heaviest! I weigh ' + heaviestPokemonWeight + 'kg!' + '</p>');
-    }
-    if (lightestPokemonWeight === pokemon.weight) {
-        document.write('<p style="font-size: 18px; color: blue; font-weight: 700;">' + 'I am the lightest! I weigh ' + lightestPokemonWeight + 'kg!' + '</p>');
-    }
-
-    if (biggestPokemonHeight === pokemon.height) {
-        document.write('<p style="font-size: 18px; color: purple; font-weight: 700;">' + 'I am the tallest! I am ' + biggestPokemonHeight + 'cm!' + '</p>');
-    }
-    if (smallestPokemonHeight === pokemon.height) {
-        document.write('<p style="font-size: 18px; color: red; font-weight: 700;">' + 'I am the smallest! I am ' + smallestPokemonHeight + 'cm!' + '</p>');
-    }
 });
 
 

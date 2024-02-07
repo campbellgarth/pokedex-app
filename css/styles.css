@@ -17,9 +17,10 @@
 }
 
 h1{
-    font-family: 'Honk';
+    font-family: 'Expletus Sans', sans-serif;
     font-size: 48px;
     text-align: center;
+    color: green;
 }
 
 .pokemon-box{

@@ -10,7 +10,19 @@ let pokemonRepository = (function () {
     ];
 
     function add(pokemon) {
-        pokemonList.push(pokemon);
+        if (
+            typeof pokemon === 'object' &&
+            'name' in pokemon &&
+            'pokedexNumber' in pokemon &&
+            'height' in pokemon &&
+            'weight' in pokemon &&
+            'type' in pokemon 
+
+        ){
+            pokemonList.push(pokemon); 
+        }
+        console.log('Pokemon format incorrect');
+           
     }
     function getAll() {
         return pokemonList;
@@ -59,14 +71,14 @@ let pokemonRepository = (function () {
 
     }
     function addListItem(pokemon) {
-        let pokemonUl = document.querySelector('.pokemon-list');
-        let listItem = document.createElement('li');
-        listItem.classList.add('each-pokemon');
-        let button = document.createElement('button');
-        let pokemonStats = pokemonMinMax();
-        button.innerText = pokemon.name;
-        
-        if (pokemonStats[0] === pokemon.weight) {
+        let pokemonUl = document.querySelector('.pokemon-list'); //pulls from Unordered list
+        let listItem = document.createElement('li'); //creates each LI element
+        listItem.classList.add('each-pokemon'); //adds class "each-pokemon" to each LI element
+        let button = document.createElement('button'); //creates button for pokemon
+        let pokemonStats = pokemonMinMax();//figures out the tallest/shortest/heaviest/lightest pokemon
+        button.innerText = pokemon.name;//adds pokemon name to each button
+
+        if (pokemonStats[0] === pokemon.weight) {//if pokemon is special, add on to button text about this
             button.append(' (I am the heaviest! I weigh ' + pokemon.weight + 'kg!)');
         }
         if (pokemonStats[1] === pokemon.weight) {
@@ -78,9 +90,9 @@ let pokemonRepository = (function () {
         if (pokemonStats[3] === pokemon.height) {
             button.append(' (I am the shortest! I am ' + pokemon.height + 'cm tall!)');
         }
-        button.classList.add('pokemon-button');
-        listItem.appendChild(button);
-        pokemonUl.appendChild(listItem);
+        button.classList.add('pokemon-button');//adds class 'pokemon-button' to each button
+        listItem.appendChild(button);//adds buttons to LIs
+        pokemonUl.appendChild(listItem);//adds LIs to UL
 
     }
 

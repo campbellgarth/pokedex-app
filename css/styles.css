@@ -25,7 +25,7 @@ h1{
 
 .pokemon-box{
     background-color: lightgray;
-    width: 30%;
+    width: 35%;
     margin: 20px auto;
     padding: 10px;
 }
@@ -34,7 +34,7 @@ h1{
     padding-left: 0;
 }
 
-@media all and (max-width: 500px){
+@media all and (max-width: 550px){
 .pokemon-box{
     width: 90%;
     margin: 20px auto;
@@ -51,3 +51,21 @@ h1{
     
 }
 }
+
+@media all and (min-width: 551px ) and (max-width: 1000px){
+    .pokemon-box{
+        width: 70%;
+        margin: 20px auto;
+        padding: 10px;
+    }
+    
+    .pokemon-button{
+        color: green;
+        width: 90%;
+        background-color: #f4eede;
+        padding: 10px;
+        font-size: 20px;
+        list-style-type: none;
+        
+    }
+    }

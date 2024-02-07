@@ -16,13 +16,13 @@ let pokemonRepository = (function () {
             'pokedexNumber' in pokemon &&
             'height' in pokemon &&
             'weight' in pokemon &&
-            'type' in pokemon 
+            'type' in pokemon
 
-        ){
-            pokemonList.push(pokemon); 
+        ) {
+            pokemonList.push(pokemon);
         }
         console.log('Pokemon format incorrect');
-           
+
     }
     function getAll() {
         return pokemonList;
@@ -94,6 +94,14 @@ let pokemonRepository = (function () {
         listItem.appendChild(button);//adds buttons to LIs
         pokemonUl.appendChild(listItem);//adds LIs to UL
 
+        button.addEventListener('click', function () { //shows all details of a pokemon in console when clicked on
+            showDetails(pokemon);
+        });
+
+    }
+
+    function showDetails(pokemon) {
+        console.log(pokemon);
     }
 
 
@@ -101,7 +109,8 @@ let pokemonRepository = (function () {
         add: add,
         getAll: getAll,
         addListItem: addListItem,
-        pokemonMinMax: pokemonMinMax
+        pokemonMinMax: pokemonMinMax,
+        showDetails: showDetails
     };
 })();
 

@@ -1,13 +1,7 @@
 
 let pokemonRepository = (function () {
-    let pokemonList = [
-        { name: 'Lapras', pokedexNumber: 31, height: 250, weight: 220, type: ['water', 'ice'] },
-        { name: 'Dragonite', pokedexNumber: 149, height: 220, weight: 210, type: ['dragon', 'flying'] },
-        { name: 'Azumarill', pokedexNumber: 184, height: 80, weight: 28, type: ['water', 'fairy'] },
-        { name: 'Charizard', pokedexNumber: 6, height: 170, weight: 90, type: ['flying', 'fire'] },
-        { name: 'Butterfree', pokedexNumber: 12, height: 110, weight: 32, type: ['flying', 'bug'] },
-        { name: 'Aron', pokedexNumber: 304, height: 40, weight: 60, type: ['steel', 'rock'] }
-    ];
+    let pokemonList = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
     function add(pokemon) {
         if (
@@ -104,20 +98,41 @@ let pokemonRepository = (function () {
         console.log(pokemon);
     }
 
+    function loadList() {
+        return fetch(apiUrl).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            json.results.forEach(function (item) {
+                let pokemon = {
+                    name: item.name,
+                    detailsUrl: item.url
+                };
+                add(pokemon);
+            });
+        }).catch(function (e) {
+            console.error(e);
+        })
+    }
+
 
     return {
         add: add,
         getAll: getAll,
         addListItem: addListItem,
         pokemonMinMax: pokemonMinMax,
-        showDetails: showDetails
+        showDetails: showDetails,
+        loadList: loadList
     };
 })();
 
-pokemonRepository.getAll().forEach(function (pokemon) {
-    pokemonRepository.addListItem(pokemon);
+pokemonRepository.loadList().then(function () {
+    pokemonRepository.getAll().forEach(function (pokemon) {
+        pokemonRepository.addListItem(pokemon);
 
-});
+    });
+})
+
+
 
 
 

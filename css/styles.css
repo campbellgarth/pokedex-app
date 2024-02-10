@@ -30,6 +30,12 @@ h1{
     padding: 10px;
 }
 
+.pokemon-button:hover,
+.pokemon-box:focus {
+    border: none;
+    background-color: #eee4cb;
+}
+
 .pokemon-list{
     padding-left: 0;
 }

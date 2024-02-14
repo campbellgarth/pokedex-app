@@ -8,10 +8,10 @@ let pokemonRepository = (function () {
             typeof pokemon === 'object' &&
             'name' in pokemon &&
             'detailsUrl' in pokemon
-        ){
+        ) {
             pokemonList.push(pokemon);
         }
-        
+
     }
     function getAll() {
         return pokemonList;
@@ -32,10 +32,63 @@ let pokemonRepository = (function () {
         });
 
     }
+    function showModal(title, text, image) {
+        let modalContainer = document.querySelector('#modal-container');
+
+        //clear all existing modal content
+
+        modalContainer.innerHTML = '';
+        let modal = document.createElement('div');
+        modal.classList.add('modal');
+
+        //add new modal content
+        let closeButtonElement = document.createElement('button');
+        closeButtonElement.classList.add('modal-close');
+        closeButtonElement.innerText = 'X';
+        //closes modal when clicked
+        closeButtonElement.addEventListener('click', hideModal);
+        //replaces title and text with dynamic content as called in function parameters
+        let titleElement = document.createElement('h1');
+        titleElement.innerText = title;
+        let contentElement = document.createElement('p');
+        contentElement.classList.add('modal-elements');
+        contentElement.innerText ='height: ' +  text;
+        
+        //add image
+        let imageElement = document.createElement('img');
+        imageElement.src = image;
+        imageElement.classList.add('pokeImg');
+        
+
+
+
+        //glue it all together!
+        modal.appendChild(closeButtonElement);
+        modal.appendChild(titleElement);
+        modal.appendChild(contentElement);
+        modal.appendChild(imageElement);
+
+        modalContainer.appendChild(modal);
+
+        modalContainer.classList.add('is-visible');
+
+        //if clicked outside the modal, modal closes
+        modalContainer.addEventListener('click', (e) => {
+            let target = e.target;
+            if (target === modalContainer) {
+                hideModal();
+            }
+        });
+    }
+
+    function hideModal(){
+        let modalContainer = document.querySelector('#modal-container');
+        modalContainer.classList.remove('is-visible');
+      }
 
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
-            console.log(pokemon);
+            showModal(pokemon.name, pokemon.height, pokemon.imageUrl);
         });
     }
 
@@ -85,7 +138,6 @@ pokemonRepository.loadList().then(function () {
 
     });
 })
-
 
 
 

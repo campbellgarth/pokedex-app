@@ -32,7 +32,7 @@ let pokemonRepository = (function () {
         });
 
     }
-    function showModal(title, text, image) {
+    function showModal(title, height, weight, image) {
         let modalContainer = document.querySelector('#modal-container');
 
         //clear all existing modal content
@@ -50,9 +50,13 @@ let pokemonRepository = (function () {
         //replaces title and text with dynamic content as called in function parameters
         let titleElement = document.createElement('h1');
         titleElement.innerText = title;
-        let contentElement = document.createElement('p');
-        contentElement.classList.add('modal-elements');
-        contentElement.innerText ='height: ' +  text;
+        titleElement.classList.add('modal-element');
+        let heightElement = document.createElement('p');
+        heightElement.innerText ='height: ' +  height;
+        heightElement.classList.add('modal-element');
+        let weightElement = document.createElement('p');
+        weightElement.innerText ='weight: ' +  weight;
+        weightElement.classList.add('modal-element');
         
         //add image
         let imageElement = document.createElement('img');
@@ -65,8 +69,10 @@ let pokemonRepository = (function () {
         //glue it all together!
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
-        modal.appendChild(contentElement);
+        modal.appendChild(heightElement);
+        modal.appendChild(weightElement);
         modal.appendChild(imageElement);
+        
 
         modalContainer.appendChild(modal);
 
@@ -88,7 +94,7 @@ let pokemonRepository = (function () {
 
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
-            showModal(pokemon.name, pokemon.height, pokemon.imageUrl);
+            showModal(pokemon.name, pokemon.height, pokemon.weight, pokemon.imageUrl);
         });
     }
 
@@ -116,11 +122,18 @@ let pokemonRepository = (function () {
             item.imageUrl = details.sprites.front_default;
             item.height = details.height;
             item.types = details.types;
+            item.weight = details.weight;
         }).catch(function (e) {
             console.error(e);
         });
     }
-
+    window.addEventListener('keydown', (e) =>
+    {
+      let modalContainer = document.querySelector('#modal-container');
+      if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')){
+        hideModal();
+      }
+    })
 
     return {
         add: add,

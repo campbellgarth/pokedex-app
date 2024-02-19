@@ -91,7 +91,7 @@ h1{
   }
 
 
-@media all and (max-width: 550px){
+/* @media all and (max-width: 550px){
 .pokemon-box{
     width: 90%;
     margin: 20px auto;
@@ -159,6 +159,6 @@ h1{
             max-width: 600px;
           }
         
-    }
+    } */
 
     

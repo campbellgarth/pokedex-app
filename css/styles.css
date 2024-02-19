@@ -89,9 +89,11 @@ h1{
   .modal-content p {
     margin-bottom: 0;
   }
+  .button{
+    z-index: 99;
+  }
 
-
-/* @media all and (max-width: 550px){
+@media all and (max-width: 550px){
 .pokemon-box{
     width: 90%;
     margin: 20px auto;
@@ -159,6 +161,6 @@ h1{
             max-width: 600px;
           }
         
-    } */
+    }
 
     

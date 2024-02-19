@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Expletus+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <script async defer src="js/scripts.js"></script>
     <title>Pokedex</title>
 </head>
 
@@ -33,7 +34,7 @@
     <div class="page-container">
     <h1>Pokedex</h1>
     <div class="pokemon-box">
-        <ul class="list-group pokemon-list"></ul>
+        <ul class="list-group" id="pokemon-list"></ul>
     </div>
     
     <div class="modal fade" id="modal-container" tabindex="-1" role="dialog" aria-labelledby="pokemonStats" aria-hidden="true">
@@ -49,7 +50,7 @@
               ...
             </div>
             <div class="modal-footer">
-              
+                <button type="button" class="btn btn-primary favorite-pokemon">Add to my favorites</button>
             </div>
           </div>
         </div>
@@ -66,7 +67,7 @@
         crossorigin="anonymous"></script>
     <script src="js/promise-polyfill.js"></script>
     <script src="js/fetch-polyfill.js"></script>
-    <script src="js/scripts.js"></script>
+    
 </body>
 
 </html>

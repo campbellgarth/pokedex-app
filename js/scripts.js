@@ -2,8 +2,6 @@
 let pokemonRepository = (function () {
     let pokemonList = [];
     let favoritePokemonList = [];
-    let myFavorites = [];
-    let myFavoritesParsed = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
     function add(pokemon) {
@@ -20,7 +18,20 @@ let pokemonRepository = (function () {
         return pokemonList;
     }
     function getAllFavorites() {
-        return favoritePokemonList;
+        const favoritesString = localStorage.getItem('myFavoritesString');
+        const parsedFavorites = favoritesString ? JSON.parse(favoritesString) : [];
+        return parsedFavorites;
+    }
+
+    function clearFavorites() {
+       
+        localStorage.clear();
+
+        alert('Favorites List cleared.');
+
+        location.reload();
+       
+
     }
 
     function addListItem(pokemon) {
@@ -62,17 +73,23 @@ let pokemonRepository = (function () {
             showDetailsFavorites(pokemon);
         });
 
-        
+
 
     }
 
     function addFavorites(pokemon) {
-        myFavorites.push(pokemon);
-        localStorage.setItem('myFavoritesString', JSON.stringify(myFavorites));
-        myFavoritesParsed= JSON.parse(localStorage.getItem('myFavoritesString'));
-        console.log(myFavoritesParsed);
-        alert('Pokemon added to favorites!');
-        
+        const favorites = JSON.parse(localStorage.getItem('myFavoritesString')) || [];
+
+        // Check if the pokemon with the same name already exists in the favorites list
+        const isAlreadyFavorited = favorites.some(fav => fav.name === pokemon.name);
+
+        if (isAlreadyFavorited) {
+            alert('This Pokémon is already favorited!');
+        } else {
+            favorites.push(pokemon);
+            localStorage.setItem('myFavoritesString', JSON.stringify(favorites));
+            alert('Pokémon added to favorites!');
+        }
     }
     function showModal(title, height, weight, image, pokemon) {
 
@@ -128,14 +145,17 @@ let pokemonRepository = (function () {
         imageElement.src = image;
         imageElement.classList.add('modal-element');
 
+        let clearPokemon = document.querySelector('.clear-pokemon');
+        clearPokemon.addEventListener('click', function () {
+            clearFavorites();
+        }
+        )
+
 
         modal.appendChild(heightElement);
         modal.appendChild(weightElement);
         modal.appendChild(imageElement);
-
-
     }
-   
 
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
@@ -148,7 +168,7 @@ let pokemonRepository = (function () {
             showModalFavorites(pokemon.name, pokemon.height, pokemon.weight, pokemon.imageUrl);
         });
     }
-    
+
 
     function loadList() {
         return fetch(apiUrl).then(function (response) {
@@ -171,19 +191,13 @@ let pokemonRepository = (function () {
             return response.json();
         }).then(function (json) {
             json.results.forEach(function (item) {
-                if (myFavoritesParsed.indexOf(item.name) !== -1) {
-                    
-                    
 
-                    let pokemon = {
-                        name: item.name,
-                        detailsUrl: item.url
-                    };
-                    favoritePokemonList.push(pokemon);
-                }
-                else {
-                    console.log(myFavorites);
-                }
+                let pokemon = {
+                    name: item.name,
+                    detailsUrl: item.url
+                };
+                favoritePokemonList.push(pokemon);
+
             });
         }).catch(function (e) {
             console.error(e);
@@ -221,6 +235,7 @@ let pokemonRepository = (function () {
         showDetailsFavorites: showDetailsFavorites,
         loadList: loadList,
         loadListFavorites: loadListFavorites,
+        clearFavorites: clearFavorites,
         loadDetails: loadDetails
     };
 })();

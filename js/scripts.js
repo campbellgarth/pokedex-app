@@ -35,7 +35,7 @@ let pokemonRepository = (function () {
         button.addEventListener('click', function () { //shows all details of a pokemon in console when clicked on
             showDetails(pokemon);
         });
-//this is where I started!
+
     }
      function showModal(title, height, weight, image) {
        

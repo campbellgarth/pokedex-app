@@ -59,8 +59,6 @@ h1{
     margin: 20px auto;
     padding: 0px;
     position: relative;
-
-
 }
 
 .pokemon-button:hover,
@@ -95,7 +93,15 @@ h1{
   }
 
 
-/* @media all and (max-width: 550px){
+ @media all and (max-width: 550px){
+  .pokemon-box{
+    background-color: lightgray;
+    width: 70%;
+    margin: 20px auto;
+    padding: 0px;
+    position: relative;
+}
+ /* }
 .pokemon-box{
     width: 90%;
     margin: 20px auto;
@@ -123,7 +129,7 @@ h1{
   }
 
 
-}
+} */
 
 @media all and (min-width: 551px ) and (max-width: 1100){
     .pokemon-box{

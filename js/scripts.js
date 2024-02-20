@@ -23,6 +23,21 @@ let pokemonRepository = (function () {
         return parsedFavorites;
     }
 
+    function addFavorites(pokemon) {
+        const favorites = JSON.parse(localStorage.getItem('myFavoritesString')) || [];
+
+        // Check if the pokemon with the same name already exists in the favorites list
+        const isAlreadyFavorited = favorites.some(fav => fav.name === pokemon.name);
+
+        if (isAlreadyFavorited) {
+            alert('This Pokémon is already favorited!');
+        } else {
+            favorites.push(pokemon);
+            localStorage.setItem('myFavoritesString', JSON.stringify(favorites));
+            alert('Pokémon added to favorites!');
+        }
+    }
+
     function clearFavorites() {
 
         localStorage.clear();
@@ -76,20 +91,6 @@ let pokemonRepository = (function () {
 
     }
 
-    function addFavorites(pokemon) {
-        const favorites = JSON.parse(localStorage.getItem('myFavoritesString')) || [];
-
-        // Check if the pokemon with the same name already exists in the favorites list
-        const isAlreadyFavorited = favorites.some(fav => fav.name === pokemon.name);
-
-        if (isAlreadyFavorited) {
-            alert('This Pokémon is already favorited!');
-        } else {
-            favorites.push(pokemon);
-            localStorage.setItem('myFavoritesString', JSON.stringify(favorites));
-            alert('Pokémon added to favorites!');
-        }
-    }
     function showModal(title, height, weight, image, pokemon) {
 
         let modalTitle = document.querySelector('.modal-title');
@@ -97,6 +98,8 @@ let pokemonRepository = (function () {
         modalTitle.innerText = title;
         modalTitle.classList.add('modal-element');
         let modal = document.querySelector('.modal-body');
+        let modalFooter = document.querySelector('.modal-footer');
+        modalFooter.innerHTML = '';
         modal.innerText = ''
         let heightElement = document.createElement('p');
         heightElement.innerText = 'height: ' + height;
@@ -110,10 +113,16 @@ let pokemonRepository = (function () {
         imageElement.src = image;
         imageElement.classList.add('modal-element');
 
+        //add favorites button to footer
+        let favoritesButton = document.createElement('button');
+        favoritesButton.classList.add('btn', 'btn-primary', 'favorite-pokemon');
+        favoritesButton.innerText = ('Add to my favorites');
+
 
         modal.appendChild(heightElement);
         modal.appendChild(weightElement);
         modal.appendChild(imageElement);
+        modalFooter.appendChild(favoritesButton);
 
 
         let favoritePokemon = document.querySelector('.favorite-pokemon');

@@ -101,7 +101,11 @@ h1{
     padding: 0px;
     position: relative;
 }
- /* }
+.pokemon-button{
+  font-size: 16px;
+}
+  }
+  /*
 .pokemon-box{
     width: 90%;
     margin: 20px auto;
@@ -129,7 +133,7 @@ h1{
   }
 
 
-} */
+} 
 
 @media all and (min-width: 551px ) and (max-width: 1100){
     .pokemon-box{

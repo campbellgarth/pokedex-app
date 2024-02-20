@@ -24,13 +24,13 @@ let pokemonRepository = (function () {
     }
 
     function clearFavorites() {
-       
+
         localStorage.clear();
 
         alert('Favorites List cleared.');
 
         location.reload();
-       
+
 
     }
 
@@ -60,7 +60,7 @@ let pokemonRepository = (function () {
         listItem.addClass('each-pokemon'); //adds class "each-pokemon" to each LI element
         listItem.addClass('list-group-item'); //adds class "list-group-item" to each LI element for bootstrap
         let button = document.createElement('button'); //creates button for pokemon
-        button.classList.add('btn','btn-light');//adds button classes for bootstrap
+        button.classList.add('btn', 'btn-light');//adds button classes for bootstrap
         button.innerText = pokemon.name;//adds pokemon name to each button
         button.classList.add('pokemon-button');//adds class 'pokemon-button' to each button
         button.setAttribute('data-toggle', 'modal');
@@ -216,12 +216,8 @@ let pokemonRepository = (function () {
             console.error(e);
         });
     }
-    window.addEventListener('keydown', (e) => {
-        let modalContainer = document.querySelector('#modal-container');
-        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-            hideModal();
-        }
-    })
+
+
 
     return {
         add: add,

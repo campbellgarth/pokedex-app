@@ -12,8 +12,8 @@ let pokemonRepository = (function () {
         ) {
             pokemonList.push(pokemon);
         }
-
     }
+
     function getAll() {
         return pokemonList;
     }
@@ -41,12 +41,8 @@ let pokemonRepository = (function () {
     function clearFavorites() {
 
         localStorage.clear();
-
         alert('Favorites List cleared.');
-
         location.reload();
-
-
     }
 
     function addListItem(pokemon) {
@@ -67,8 +63,8 @@ let pokemonRepository = (function () {
         button.addEventListener('click', function () { //shows all details of a pokemon in console when clicked on
             showDetails(pokemon);
         });
-
     }
+
     function addListItemFavorites(pokemon) {
         let pokemonUnorderedList = $('#pokemon-list-favorites'); //pulls from Unordered list
         let listItem = $('<li></li>'); //creates each LI element
@@ -86,9 +82,6 @@ let pokemonRepository = (function () {
         button.addEventListener('click', function () { //shows all details of a pokemon in console when clicked on
             showDetailsFavorites(pokemon);
         });
-
-
-
     }
 
     function showModal(title, height, weight, image, pokemon) {
@@ -118,19 +111,16 @@ let pokemonRepository = (function () {
         favoritesButton.classList.add('btn', 'btn-primary', 'favorite-pokemon');
         favoritesButton.innerText = ('Add to my favorites');
 
-
         modal.appendChild(heightElement);
         modal.appendChild(weightElement);
         modal.appendChild(imageElement);
         modalFooter.appendChild(favoritesButton);
-
 
         let favoritePokemon = document.querySelector('.favorite-pokemon');
         favoritePokemon.addEventListener('click', function () {
             addFavorites(pokemon);
         }
         )
-
     }
 
     function showModalFavorites(title, height, weight, image) {
@@ -159,7 +149,6 @@ let pokemonRepository = (function () {
         }
         )
 
-
         modal.appendChild(heightElement);
         modal.appendChild(weightElement);
         modal.appendChild(imageElement);
@@ -176,7 +165,6 @@ let pokemonRepository = (function () {
             showModalFavorites(pokemon.name, pokemon.height, pokemon.weight, pokemon.imageUrl);
         });
     }
-
 
     function loadList() {
         return fetch(apiUrl).then(function (response) {
@@ -225,8 +213,6 @@ let pokemonRepository = (function () {
             console.error(e);
         });
     }
-
-
 
     return {
         add: add,

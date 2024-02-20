@@ -60,8 +60,7 @@ let pokemonRepository = (function () {
         listItem.addClass('each-pokemon'); //adds class "each-pokemon" to each LI element
         listItem.addClass('list-group-item'); //adds class "list-group-item" to each LI element for bootstrap
         let button = document.createElement('button'); //creates button for pokemon
-        button.classList.add('btn');
-        button.classList.add('btn-light');//adds button classes for bootstrap
+        button.classList.add('btn','btn-light');//adds button classes for bootstrap
         button.innerText = pokemon.name;//adds pokemon name to each button
         button.classList.add('pokemon-button');//adds class 'pokemon-button' to each button
         button.setAttribute('data-toggle', 'modal');

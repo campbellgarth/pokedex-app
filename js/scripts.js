@@ -49,7 +49,7 @@ let pokemonRepository = (function () {
         listItem.append(button);//adds buttons to LIs
         pokemonUnorderedList.append(listItem);//adds LIs to UL
 
-        button.addEventListener('touchstart', function () { //shows all details of a pokemon in console when clicked on
+        button.addEventListener('click', function () { //shows all details of a pokemon in console when clicked on
             showDetails(pokemon);
         });
 

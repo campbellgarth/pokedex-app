@@ -7,7 +7,8 @@
     list-style-type: none;
     font-family: 'Expletus Sans', sans-serif;
     cursor: pointer;
-    z-index: 999;
+    z-index: 1;
+    position: relative;
 }
 .btn-primary{
   outline-color: none;
